@@ -1,7 +1,35 @@
 {
-  "name": "blinkid-cordova",
-  "version": "4.5.0",
-  "description": "A small and powerful ID card scanning library",
+  "_from": "blinkid-cordova",
+  "_id": "blinkid-cordova@4.6.0",
+  "_inBundle": false,
+  "_integrity": "sha512-OykPlT4d3Vvs/eBWQmGSivXTJItiQJC3o9GBU9VB3YebBP2gDZmsyDmlS8XgwldHtQyQ8jkVjVHni5kBdZOGCA==",
+  "_location": "/blinkid-cordova",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "blinkid-cordova",
+    "name": "blinkid-cordova",
+    "escapedName": "blinkid-cordova",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/blinkid-cordova/-/blinkid-cordova-4.6.0.tgz",
+  "_shasum": "1bfbd1182d857136dad20304a3c6ca0c4b906285",
+  "_spec": "blinkid-cordova",
+  "_where": "/Users/anilsanto/Desktop/helo",
+  "author": {
+    "name": "Microblink"
+  },
+  "bugs": {
+    "url": "https://github.com/BlinkID/blinkid-phonegap/issues"
+  },
+  "bundleDependencies": false,
   "cordova": {
     "id": "blinkid-cordova",
     "platforms": [
@@ -9,10 +37,23 @@
       "ios"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BlinkID/blinkid-phonegap.git"
-  },
+  "deprecated": false,
+  "description": "A small and powerful ID card scanning library",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=7.0.0"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=7.0.0"
+    },
+    {
+      "name": "cordova-ios",
+      "version": ">=4.4.0"
+    }
+  ],
+  "homepage": "https://github.com/BlinkID/blinkid-phonegap#readme",
   "keywords": [
     "scan",
     "id",
@@ -38,24 +79,11 @@
     "cordova-android",
     "cordova-ios"
   ],
-  "engines": [
-    {
-      "name": "cordova",
-      "version": ">=7.0.0"
-    },
-    {
-      "name": "cordova-android",
-      "version": ">=7.0.0"
-    },
-    {
-      "name": "cordova-ios",
-      "version": ">=4.4.0"
-    }
-  ],
-  "author": "Microblink",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/BlinkID/blinkid-phonegap/issues"
+  "name": "blinkid-cordova",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlinkID/blinkid-phonegap.git"
   },
-  "homepage": "https://github.com/BlinkID/blinkid-phonegap#readme"
+  "version": "4.6.0"
 }

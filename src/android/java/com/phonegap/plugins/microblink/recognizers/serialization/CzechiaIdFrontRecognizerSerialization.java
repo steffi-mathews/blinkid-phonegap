@@ -19,9 +19,13 @@ public final class CzechiaIdFrontRecognizerSerialization implements RecognizerSe
         recognizer.setExtractPlaceOfBirth(jsonRecognizer.optBoolean("extractPlaceOfBirth", true));
         recognizer.setExtractSex(jsonRecognizer.optBoolean("extractSex", true));
         recognizer.setExtractSurname(jsonRecognizer.optBoolean("extractSurname", true));
+        recognizer.setFaceImageDpi(jsonRecognizer.optInt("faceImageDpi", 250));
+        recognizer.setFullDocumentImageDpi(jsonRecognizer.optInt("fullDocumentImageDpi", 250));
+        recognizer.setFullDocumentImageExtensionFactors(BlinkIDSerializationUtils.deserializeExtensionFactors(jsonRecognizer.optJSONObject("fullDocumentImageExtensionFactors")));
         recognizer.setReturnFaceImage(jsonRecognizer.optBoolean("returnFaceImage", false));
         recognizer.setReturnFullDocumentImage(jsonRecognizer.optBoolean("returnFullDocumentImage", false));
         recognizer.setReturnSignatureImage(jsonRecognizer.optBoolean("returnSignatureImage", false));
+        recognizer.setSignatureImageDpi(jsonRecognizer.optInt("signatureImageDpi", 250));
         return recognizer;
     }
 
@@ -34,14 +38,14 @@ public final class CzechiaIdFrontRecognizerSerialization implements RecognizerSe
             jsonResult.put("dateOfBirth", SerializationUtils.serializeDate(result.getDateOfBirth()));
             jsonResult.put("dateOfExpiry", SerializationUtils.serializeDate(result.getDateOfExpiry()));
             jsonResult.put("dateOfIssue", SerializationUtils.serializeDate(result.getDateOfIssue()));
+            jsonResult.put("documentNumber", result.getDocumentNumber());
             jsonResult.put("faceImage", SerializationUtils.encodeImageBase64(result.getFaceImage()));
-            jsonResult.put("firstName", result.getFirstName());
             jsonResult.put("fullDocumentImage", SerializationUtils.encodeImageBase64(result.getFullDocumentImage()));
-            jsonResult.put("identityCardNumber", result.getIdentityCardNumber());
-            jsonResult.put("lastName", result.getLastName());
+            jsonResult.put("givenNames", result.getGivenNames());
             jsonResult.put("placeOfBirth", result.getPlaceOfBirth());
             jsonResult.put("sex", result.getSex());
             jsonResult.put("signatureImage", SerializationUtils.encodeImageBase64(result.getSignatureImage()));
+            jsonResult.put("surname", result.getSurname());
         } catch (JSONException e) {
             // see https://developer.android.com/reference/org/json/JSONException
             throw new RuntimeException(e);

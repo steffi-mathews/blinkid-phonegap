@@ -11,10 +11,13 @@ public final class AustraliaDlBackRecognizerSerialization implements RecognizerS
     @Override
     public Recognizer<?, ?> createRecognizer(JSONObject jsonRecognizer) {
         com.microblink.entities.recognizers.blinkid.australia.AustraliaDlBackRecognizer recognizer = new com.microblink.entities.recognizers.blinkid.australia.AustraliaDlBackRecognizer();
+        recognizer.setDetectGlare(jsonRecognizer.optBoolean("detectGlare", true));
         recognizer.setExtractAddress(jsonRecognizer.optBoolean("extractAddress", true));
-        recognizer.setExtractDateOfExpiry(jsonRecognizer.optBoolean("extractDateOfExpiry", true));
         recognizer.setExtractLastName(jsonRecognizer.optBoolean("extractLastName", true));
+        recognizer.setExtractLicenceNumber(jsonRecognizer.optBoolean("extractLicenceNumber", true));
+        recognizer.setExtractLicenseExpiry(jsonRecognizer.optBoolean("extractLicenseExpiry", true));
         recognizer.setFullDocumentImageDpi(jsonRecognizer.optInt("fullDocumentImageDpi", 250));
+        recognizer.setFullDocumentImageExtensionFactors(BlinkIDSerializationUtils.deserializeExtensionFactors(jsonRecognizer.optJSONObject("fullDocumentImageExtensionFactors")));
         recognizer.setReturnFullDocumentImage(jsonRecognizer.optBoolean("returnFullDocumentImage", false));
         return recognizer;
     }
@@ -26,9 +29,9 @@ public final class AustraliaDlBackRecognizerSerialization implements RecognizerS
         try {
             SerializationUtils.addCommonResultData(jsonResult, result);
             jsonResult.put("address", result.getAddress());
-            jsonResult.put("dateOfExpiry", SerializationUtils.serializeDate(result.getDateOfExpiry()));
             jsonResult.put("fullDocumentImage", SerializationUtils.encodeImageBase64(result.getFullDocumentImage()));
             jsonResult.put("lastName", result.getLastName());
+            jsonResult.put("licenceExpiry", SerializationUtils.serializeDate(result.getLicenceExpiry()));
             jsonResult.put("licenceNumber", result.getLicenceNumber());
         } catch (JSONException e) {
             // see https://developer.android.com/reference/org/json/JSONException

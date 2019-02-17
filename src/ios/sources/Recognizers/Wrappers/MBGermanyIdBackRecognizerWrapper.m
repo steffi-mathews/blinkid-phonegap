@@ -35,21 +35,27 @@
         }
     }
     {
+        id extractColourOfEyes = [jsonRecognizer valueForKey:@"extractColourOfEyes"];
+        if (extractColourOfEyes != nil) {
+            recognizer.extractColourOfEyes = [(NSNumber *)extractColourOfEyes boolValue];
+        }
+    }
+    {
         id extractDateOfIssue = [jsonRecognizer valueForKey:@"extractDateOfIssue"];
         if (extractDateOfIssue != nil) {
             recognizer.extractDateOfIssue = [(NSNumber *)extractDateOfIssue boolValue];
         }
     }
     {
-        id extractEyeColour = [jsonRecognizer valueForKey:@"extractEyeColour"];
-        if (extractEyeColour != nil) {
-            recognizer.extractEyeColour = [(NSNumber *)extractEyeColour boolValue];
-        }
-    }
-    {
         id extractHeight = [jsonRecognizer valueForKey:@"extractHeight"];
         if (extractHeight != nil) {
             recognizer.extractHeight = [(NSNumber *)extractHeight boolValue];
+        }
+    }
+    {
+        id fullDocumentImageDpi = [jsonRecognizer valueForKey:@"fullDocumentImageDpi"];
+        if (fullDocumentImageDpi != nil) {
+            recognizer.fullDocumentImageDpi = [(NSNumber *)fullDocumentImageDpi unsignedIntegerValue];
         }
     }
     {
@@ -77,30 +83,17 @@
 
 -(NSDictionary *) serializeResult {
     NSMutableDictionary* jsonResult = (NSMutableDictionary*)[super serializeResult];
-    [jsonResult setValue:self.result.address forKey:@"address"];
     [jsonResult setValue:self.result.addressCity forKey:@"addressCity"];
     [jsonResult setValue:self.result.addressHouseNumber forKey:@"addressHouseNumber"];
     [jsonResult setValue:self.result.addressStreet forKey:@"addressStreet"];
     [jsonResult setValue:self.result.addressZipCode forKey:@"addressZipCode"];
     [jsonResult setValue:self.result.authority forKey:@"authority"];
-    [jsonResult setValue:[MBSerializationUtils serializeNSDate:self.result.dateOfBirth] forKey:@"dateOfBirth"];
-    [jsonResult setValue:[MBSerializationUtils serializeNSDate:self.result.dateOfExpiry] forKey:@"dateOfExpiry"];
-    [jsonResult setValue:[MBSerializationUtils serializeNSDate:self.result.dateOfIssue] forKey:@"dateOfIssue"];
-    [jsonResult setValue:self.result.documentCode forKey:@"documentCode"];
-    [jsonResult setValue:self.result.documentNumber forKey:@"documentNumber"];
-    [jsonResult setValue:self.result.eyeColour forKey:@"eyeColour"];
+    [jsonResult setValue:self.result.colourOfEyes forKey:@"colourOfEyes"];
+    [jsonResult setValue:[MBSerializationUtils serializeMBDateResult:self.result.dateOfIssue] forKey:@"dateOfIssue"];
+    [jsonResult setValue:self.result.fullAddress forKey:@"fullAddress"];
     [jsonResult setValue:[MBSerializationUtils encodeMBImage:self.result.fullDocumentImage] forKey:@"fullDocumentImage"];
     [jsonResult setValue:self.result.height forKey:@"height"];
-    [jsonResult setValue:self.result.issuer forKey:@"issuer"];
-    [jsonResult setValue:[NSNumber numberWithBool:self.result.mrzParsed] forKey:@"mrzParsed"];
-    [jsonResult setValue:self.result.mrzText forKey:@"mrzText"];
-    [jsonResult setValue:[NSNumber numberWithBool:self.result.mrzVerified] forKey:@"mrzVerified"];
-    [jsonResult setValue:self.result.nationality forKey:@"nationality"];
-    [jsonResult setValue:self.result.opt1 forKey:@"opt1"];
-    [jsonResult setValue:self.result.opt2 forKey:@"opt2"];
-    [jsonResult setValue:self.result.primaryId forKey:@"primaryId"];
-    [jsonResult setValue:self.result.secondaryId forKey:@"secondaryId"];
-    [jsonResult setValue:self.result.sex forKey:@"sex"];
+    [jsonResult setValue:[MBBlinkIDSerializationUtils serializeMrzResult:self.result.mrzResult] forKey:@"mrzResult"];
 
     return jsonResult;
 }
